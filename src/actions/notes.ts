@@ -39,6 +39,34 @@ export const deleteNoteAction = async (noteId: number) => {
   }
 };
 
+export const archiveNoteAction = async (noteId: number) => {
+  try {
+    const user = await getUser();
+
+    const note = await db
+      .select()
+      .from(notes)
+      .where(and(eq(notes.id, noteId), eq(notes.userId, user.id)))
+      .limit(1);
+
+    if (!note.length) {
+      return { errorMessage: "Note not found." };
+    }
+
+    const currentNote = note[0];
+    const newIsArchived = currentNote.isArchived ? false : true;
+
+    await db
+      .update(notes)
+      .set({ isArchived: newIsArchived })
+      .where(and(eq(notes.id, noteId), eq(notes.userId, user.id)));
+
+    return { errorMessage: null };
+  } catch (error) {
+    return { errorMessage: getErrorMessage(error) };
+  }
+};
+
 export const editNoteAction = async (formData: FormData) => {
   try {
     const user = await getUser();

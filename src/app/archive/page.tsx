@@ -11,12 +11,12 @@ export default async function Home() {
   const _notes = await db
     .select()
     .from(notes)
-    .where(and(eq(notes.userId, user.id), eq(notes.isArchived, false)))
+    .where(and(eq(notes.userId, user.id), eq(notes.isArchived, true)))
     .orderBy(desc(notes.updatedAt));
 
   return (
     <main className="flex min-h-screen flex-col items-center px-4 pb-24">
-      <Header title="Notes" />
+      <Header title="Archive" />
 
       <div className="mt-8 grid w-full max-w-[1800px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {_notes.map((note) => (

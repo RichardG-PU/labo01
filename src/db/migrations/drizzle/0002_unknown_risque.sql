@@ -1,0 +1,1 @@
+ALTER TABLE "notes" ALTER COLUMN "archived" SET DEFAULT false;

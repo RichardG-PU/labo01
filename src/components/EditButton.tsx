@@ -3,7 +3,6 @@
 import { Note } from "@/db/schemas/notes";
 import { useState } from "react";
 import { Dialog, DialogTrigger } from "./ui/dialog";
-import { AlertDialogTrigger } from "./ui/alert-dialog";
 import { Edit } from "lucide-react";
 import EditNoteDialog from "./EditNoteDialog";
 
@@ -17,7 +16,7 @@ function EditButton({ note }: Props) {
   return (
     <Dialog open={open} onOpenChange={(open) => setOpen(open)}>
       <DialogTrigger onClick={() => setOpen(true)}>
-        <Edit className="text-muted-foreground size-5" />
+        <Edit className="size-5 text-muted-foreground" />
       </DialogTrigger>
 
       <EditNoteDialog setOpen={setOpen} note={note} />

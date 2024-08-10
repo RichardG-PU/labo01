@@ -3,6 +3,7 @@
 import { Note as NoteType } from "@/db/schemas/notes";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import ArchiveButton from "./isArchivedButton";
 
 type Props = {
   note: NoteType;
@@ -17,6 +18,8 @@ function Note({ note }: Props) {
         </h2>
 
         <EditButton note={note} />
+
+        <ArchiveButton noteId={note.id} />
 
         <DeleteButton noteId={note.id} />
       </div>
