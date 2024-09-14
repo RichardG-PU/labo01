@@ -9,7 +9,7 @@ import { revalidatePath } from "next/cache";
 
 export const addNewNoteAction = async (formData: FormData) => {
   try {
-    const user = await getUser();
+    const user = await getUser(); //test
 
     const text = formData.get("text") as string;
 
